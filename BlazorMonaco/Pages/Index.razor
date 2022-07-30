@@ -12,6 +12,14 @@
         </select>
     </div>
     <div style="margin:10px 0;">
+        Theme:
+        <select @onchange="ChangeLang">
+            <option value="csharp">C#</option>
+            <option value="javascript">javascript</option>
+            <option value="python">python</option>
+        </select>
+    </div>
+    <div style="margin:10px 0;">
         New Value: <input type="text" @bind="ValueToSet" style="width: 400px;" /> <button @onclick="SetValue">Set Value</button>
     </div>
     <div style="margin:10px 0;">
@@ -28,17 +36,18 @@
     </div>
 </div>
 
-<MonacoEditor @ref="_editor" Id="sample-code-editor-123" ConstructionOptions="EditorConstructionOptions" OnDidInit="EditorOnDidInit" OnContextMenu="OnContextMenu" />
+<MonacoEditor @ref="_editor" Id="editor" ConstructionOptions="EditorConstructionOptions" OnDidInit="EditorOnDidInit" OnContextMenu="OnContextMenu" />
 
 @code {
     private MonacoEditor _editor { get; set; }
     private string ValueToSet { get; set; }
+    private string MyLanguage { get; set; } = "csharp";
 
     private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor editor)
     {
         return new StandaloneEditorConstructionOptions
         {
-            Language = "javascript",
+            Language = MyLanguage,
             GlyphMargin = true,
             Value = "\"use strict\";\n" +
                     "function Person(age) {\n" +
@@ -90,6 +99,12 @@
         await MonacoEditor.SetTheme(e.Value.ToString());
     }
 
+    private async Task ChangeLang(ChangeEventArgs e)
+    {
+        Console.WriteLine($"setting language to: {e.Value.ToString()}");
+        await Task.Run(() => MyLanguage = e.Value.ToString());
+        await MonacoEditor.SetTheme(e.Value.ToString());
+    }
     private async Task SetValue()
     {
         Console.WriteLine($"setting value to: {ValueToSet}");

@@ -135,6 +135,10 @@ window.blazorMonaco.editor = {
         monaco.editor.setTheme(theme);
         return true;
     },
+    setLang: function (theme) {
+        monaco.editor.setLang(theme);
+        return true;
+    },
 
     //#endregion
 

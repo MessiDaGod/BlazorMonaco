@@ -1,4 +1,4 @@
-﻿
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -192,4 +192,12 @@ app {
 
 .decorationContentClass {
     background: lightblue;
+}
+
+#editor {
+    /* width: 90%; */
+    height: 90%;
+}
+.overflow-guard {
+    min-height: 50% !important;
 }

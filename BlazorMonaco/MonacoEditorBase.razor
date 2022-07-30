@@ -16,6 +16,9 @@
     [Inject] protected IJSRuntime jsRuntime { get; set; }
     protected static IJSRuntime staticJsRuntime { get; set; }
     protected DotNetObjectReference<MonacoEditorBase> jsObjectRef { get; set; }
+
+    public static string MyLanguage { get; set; } = "javascript";
+
     private Dictionary<string, Action<MonacoEditorBase, int[]>> actions { get; set; } = new Dictionary<string, Action<MonacoEditorBase, int[]>>();
     private Dictionary<string, Action<MonacoEditorBase, int>> commands { get; set; } = new Dictionary<string, Action<MonacoEditorBase, int>>();
 
@@ -231,6 +234,14 @@
         if (staticJsRuntime == null)
             return;
         await staticJsRuntime.InvokeVoidAsync("blazorMonaco.editor.setTheme", newTheme);
+    }
+
+    public static async Task SetLang(string newLang)
+    {
+        if (staticJsRuntime == null)
+            return;
+        await staticJsRuntime.InvokeVoidAsync("blazorMonaco.editor.setLang", newLang);
+        await Task.Run(() => MyLanguage = newLang);
     }
 
     // tokenize
