@@ -12,7 +12,7 @@ Not the complete set but most of the Monaco Editor functionality is currently su
 
 Current version of BlazorMonaco :
 * Works with Monaco Editor v0.22.3
-* Built and tested for netstandard2.0 and net5.0
+* Built and tested for netstandard2.0 and net6.0
 
 ## Demo
 
