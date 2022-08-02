@@ -182,7 +182,7 @@ app {
 }
 
 .monaco-editor-container {
-    height: 200px;
+    height: 600px;
     border: 1px solid gray;
 }
 
@@ -196,7 +196,7 @@ app {
 
 #editor {
     /* width: 90%; */
-    height: 90%;
+    /* height: 90%; */
 }
 .overflow-guard {
     min-height: 50% !important;
